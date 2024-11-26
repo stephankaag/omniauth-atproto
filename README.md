@@ -15,7 +15,7 @@ gem 'omniauth-atproto'
 
 ## Usage
 
-You can cnfigure it :
+You can configure it :
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider(:atproto,
@@ -31,7 +31,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     client_jwk: OmniAuth::Atproto::KeyManager.current_jwk)
 end
 ```
-You will have to generate keys and the oauth/client-metadata.json document (a generator should come soon)
+You will have to generate keys and the oauth/client-metadata.json document (a generator should come soon).
 
 ```ruby
 #lib/tasks/atproto.rake
@@ -74,4 +74,10 @@ Then you can
 ```bash
 rails atproto:generate_metadata
 ```
-The values from the metadata endpoint should correspond to those you gave as option for the strategy (that's why a generator would be very handy) 
+The values from the metadata endpoint should correspond to those you gave as option for the strategy (that's why a generator would be very handy).
+
+All subsequent request made with the token should use the same private_key (with dpop, see the atproto_client gem).
+
+The pds is going to request your app at oauth/client-metadata.json. For developement you will have to use some kind of proxy, like ngrok (there is a "development mode" in the spec but I didnt try it)
+
+Here is the [documentation I tried to follow](https://atproto.com/specs/oauth)
