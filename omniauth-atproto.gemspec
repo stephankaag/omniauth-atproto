@@ -24,9 +24,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'atproto_client'
+  spec.add_dependency 'didkit'
+  spec.add_dependency 'faraday'
   spec.add_dependency 'jwt', '~> 2.7'
   spec.add_dependency 'omniauth-oauth2', '~> 1.8'
-  spec.add_dependency 'omniauth-rails_csrf_protection'
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
