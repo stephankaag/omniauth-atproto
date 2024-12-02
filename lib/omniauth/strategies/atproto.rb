@@ -51,7 +51,7 @@ module OmniAuth
             code: request.params['code'],
             client_id: options.client_id,
             client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-            client_assertion: generate_client_assertion
+            client_assertion: generate_client_assertion,
           }
         )
         dpop_handler = AtProto::DpopHandler.new(options.private_key)
