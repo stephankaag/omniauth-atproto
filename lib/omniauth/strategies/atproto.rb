@@ -26,6 +26,14 @@ module OmniAuth
           if env["rack.request.form_hash"] && handle = env["rack.request.form_hash"]["handle"]
             resolver = DIDKit::Resolver.new
             did = resolver.resolve_handle(handle)
+
+            unless did
+              env['omniauth.strategy'].fail!(:unknown_handle,
+                OmniAuth::Error.new(
+                  'Handle parameter did not resolve to a did'
+                ))
+            end
+
             endpoint = resolver.resolve_did(did).pds_endpoint
             auth_server = get_authorization_server(endpoint)
             session["authorization_info"] = authorization_info = get_authorization_data(auth_server)
