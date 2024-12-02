@@ -43,10 +43,6 @@ module OmniAuth
 
       private
 
-      def has_default_client_options?
-        %i[site authorize_url token_url].all? { |k| options.client_options.key? k }
-      end
-
       def build_access_token
         new_token_params = token_params.merge(
           {
